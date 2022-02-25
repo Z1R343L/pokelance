@@ -77,8 +77,7 @@ class Client:
         if not pokemon:
             pokemon = random.randint(1, 700)
         if self._cache is not None:
-            cached_data = self._cache.pokemon_cache.get(str(pokemon))
-            if cached_data:
+            if cached_data := self._cache.pokemon_cache.get(str(pokemon)):
                 return Pokemon(self, cached_data)
 
         data = await self.http.fetch_pokemon_data(pokemon)
